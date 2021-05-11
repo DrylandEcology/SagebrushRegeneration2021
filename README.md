@@ -6,7 +6,10 @@
 [rSW2analysis]: https://github.com/DrylandEcology/rSW2analysis
 
 
+
+
 # Understanding future big sagebrush regeneration potential
+[![DOI](https://zenodo.org/badge/360982261.svg)](https://zenodo.org/badge/latestdoi/360982261)
 
 Contact: Daniel R Schlaepfer [ORCiD](https://orcid.org/0000-0001-9973-2065)
 
