@@ -602,7 +602,8 @@ plot_panels_2way_predictors <- function(
   id_ticks1, id_ticks2,
   include_0_on_xaxis = FALSE,
   last_plot = NULL,
-  add_legend = FALSE
+  add_legend = FALSE,
+  cex_legend = 0.65
 ) {
 
   response <- force(response)
@@ -733,18 +734,23 @@ plot_panels_2way_predictors <- function(
 
     # Add legend
     if (add_legend) {
+      loc_legend <- rSW2analysis::legend_location(
+        add_points,
+        xlim = xlimt,
+        ylim = ylim
+      )
+
       legend(
-        x = rSW2analysis::legend_location(
-          add_points,
-          xlim = xlimt,
-          ylim = ylim
-        ),
+        x = loc_legend,
         bty = "n",
         legend = round(funtrans(iv2)(vbreaks), 2),
         title = sub(" (", "\n(", xlabs[iv2], fixed = TRUE),
         fill = visreg:::pal(n = length(vbreaks)),
-        cex = 0.65,
-        inset = 0.1
+        cex = cex_legend,
+        inset = c(
+          if (grepl("left", loc_legend)) 0.15 else 0.05,
+          if (grepl("top", loc_legend)) 0.1 else 0.05
+        )
       )
     }
 
@@ -769,6 +775,7 @@ plot_model_relationships <- function(
   include_0_on_xaxis = FALSE,
   panels_by_row = TRUE,
   last_plot = NULL,
+  cex_legend = 0.65,
   path = ".",
   ftag = "",
   device = c("png", "pdf")
@@ -906,6 +913,7 @@ plot_model_relationships <- function(
       id_ticks2 = id_ticks2,
       include_0_on_xaxis = include_0_on_xaxis,
       add_legend = if (models_have_same_preds) iy == 2 else TRUE,
+      cex_legend = cex_legend,
       last_plot = last_plot
     )
   }

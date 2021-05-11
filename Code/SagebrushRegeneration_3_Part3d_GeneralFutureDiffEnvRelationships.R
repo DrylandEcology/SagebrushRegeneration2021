@@ -771,6 +771,7 @@ if (do_plot_relationships) {
       ),
       ylabs = model_labels,
       include_0_on_xaxis = FALSE,
+      cex_legend = 0.85,
       panels_by_row = FALSE,
       path = dir_res2_q3d,
       ftag = paste0(
