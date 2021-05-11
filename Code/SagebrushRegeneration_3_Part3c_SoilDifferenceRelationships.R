@@ -331,7 +331,8 @@ if (do_fit_relationships) {
       ),
       subsets = list(msdata[[1]][["ids_data"]], msdata[[2]][["ids_data"]]),
       path = dir_res2_q3c,
-      ftag = "FixedSoilDifferences"
+      ftag = "FixedSoilDifferences",
+      device = device_type
     )
   }
 
@@ -359,7 +360,8 @@ if (do_plot_relationships) {
     include_0_on_xaxis = FALSE,
     panels_by_row = TRUE,
     path = dir_res2_q3c,
-    ftag = paste0("FixedSoilDifferences_", sc_hist)
+    ftag = paste0("FixedSoilDifferences_", sc_hist),
+    device = device_type
   )
 }
 
@@ -405,6 +407,7 @@ if (do_plot_data) {
     map_legend_pos = legend_pos,
     map_extent = extent_subsets[[tag_subset]],
     path = dir_res2_q3c,
+    device = device_type,
     ftag = paste(tag_subset, sc_hist, "diffsAmongFxSoils", sep = "_"),
     pborders = pborders
   )

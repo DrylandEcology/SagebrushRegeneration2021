@@ -190,6 +190,7 @@ if (do_fig_overview) {
     map_legend_pos = legend_pos,
     map_extent = extent_subsets[[min(used_subsets)]],
     path = dir_res2_q1b,
+    device = device_type,
     ftag = paste(
       "Maps_GISSM_vs_Shriver2018",
       default_subprj, cfun, vtag, sep = "_"
@@ -266,6 +267,7 @@ if (do_fig_overview_small) {
         map_legend_pos = legend_pos,
         map_extent = extent_subsets[[min(used_subsets)]],
         path = dir_res2_q1b,
+        device = device_type,
         ftag = paste(
           "Maps_GISSM_vs_Shriver2018",
           default_subprj, cfun, id_eus, vtag, sep = "_"
@@ -335,6 +337,7 @@ if (do_rate_comparison) {
     use_labels = "panel_identifier",
     fexp_axis = 1,
     path = dir_res2_q1b,
+    device = device_type,
     ftag = paste(
       "RateOfChange_GISSM_vs_Shriver2018",
       default_subprj, cfun, vtag, sep = "_"

@@ -89,6 +89,10 @@ dir_res2 <- file.path(dir_prj, "4_Analysis_Results")
 dir.create(dir_res2, recursive = TRUE, showWarnings = FALSE)
 
 
+#--- Figure output format
+device_type <- "pdf" # one of "png" "pdf
+
+
 #--- The experiment is organized in five parts each by a different
 # soil specification
 tag_subprj <- c(

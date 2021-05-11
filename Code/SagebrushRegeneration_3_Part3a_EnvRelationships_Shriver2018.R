@@ -393,7 +393,8 @@ if (do_fit_relationships) {
       data_sp = tmp_data[, coords],
       subsets = list(res_fit[[1]][["ids_data"]], res_fit[[2]][["ids_data"]]),
       path = dir_res2_q3a,
-      ftag = "Shriver2018-predictors"
+      ftag = "Shriver2018-predictors",
+      device = device_type
     )
   }
 
@@ -443,7 +444,8 @@ if (do_plot_relationships) {
       sc_hist, "_",
       if (do_glm) "_GLM" else "_GAM",
       if (do_m1_withInteractions) "_withInteractions"
-    )
+    ),
+    device = device_type
   )
 }
 
@@ -481,6 +483,7 @@ if (do_plot_data) {
     use_labels = "none",
     fexp_axis = 1,
     path = dir_res2_q3a,
+    device = device_type,
     ftag = paste0("SmoothScatter_", sc_hist, "-", default_subprj)
   )
 }

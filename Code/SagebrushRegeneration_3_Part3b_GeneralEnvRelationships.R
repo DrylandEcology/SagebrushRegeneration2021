@@ -174,7 +174,8 @@ for (nclusters_max_apriori in c(2L, 4L)[1]) {
           "GeneralEnvRelationships_untransformed_",
           sc_hist, "_",
           msdata[[ks]][["tag_subset"]]
-        )
+        ),
+        device = device_type
       )
     }
 
@@ -289,7 +290,8 @@ for (nclusters_max_apriori in c(2L, 4L)[1]) {
         ftag = paste0(
           "GeneralEnvRelationships_transformed_",
           sc_hist, "_", msdata[[ks]][["tag_subset"]]
-        )
+        ),
+        device = device_type
       )
     }
 
@@ -332,7 +334,8 @@ for (nclusters_max_apriori in c(2L, 4L)[1]) {
         ftag = paste0(
           "GeneralEnvRelationships_",
           sc_hist, "_", msdata[[ks]][["tag_subset"]]
-        )
+        ),
+        device = device_type
       )
 
 
@@ -397,7 +400,8 @@ for (nclusters_max_apriori in c(2L, 4L)[1]) {
           "GeneralEnvRelationships_selected_",
           sc_hist, "_", msdata[[ks]][["tag_subset"]],
           "_nclusters", nclusters_max_apriori
-        )
+        ),
+        device = device_type
       )
 
 
@@ -603,7 +607,8 @@ for (nclusters_max_apriori in c(2L, 4L)[1]) {
         ftag = paste0(
           "GeneralEnvRelationships",
           "_nclusters", nclusters_max_apriori
-        )
+        ),
+        device = device_type
       )
     }
 
@@ -640,7 +645,8 @@ for (nclusters_max_apriori in c(2L, 4L)[1]) {
         "GeneralEnvRelationships_",
         sc_hist,
         "_nclusters", nclusters_max_apriori
-      )
+      ),
+      device = device_type
     )
   }
 }

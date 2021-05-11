@@ -511,15 +511,26 @@ if (do_sensitivity_violins) {
         "Fig_Sensitivity_ExperimentalFactors_",
         names(ids_fig_groups)[ifg],
         if (ifx) "_withValuesAndChange", "_", vtag,
-        ".png"
+        ".", device_type
       )
     )
-    png(
-      units = "in", res = 150,
-      height = fexp * sum(layout_heights),
-      width = fexp * sum(layout_widths),
-      file = file
-    )
+
+    if (device_type == "png") {
+      grDevices::png(
+        file = file,
+        units = "in",
+        res = 150,
+        height = fexp * sum(layout_heights),
+        width = fexp * sum(layout_widths)
+      )
+
+    } else if (device_type == "pdf") {
+      grDevices::pdf(
+        file = file,
+        height = fexp * sum(layout_heights),
+        width = fexp * sum(layout_widths)
+      )
+    }
 
     layout(lmat, heights = layout_heights, widths = layout_widths)
 

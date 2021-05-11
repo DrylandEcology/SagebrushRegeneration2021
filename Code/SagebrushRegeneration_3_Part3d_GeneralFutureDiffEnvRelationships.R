@@ -251,7 +251,8 @@ for (ks in seq_along(models)) {
       ftag = paste0(
         "FutureDiffEnvRelationships_untransformed_",
         msdata[[ks]][["tag_subset"]]
-      )
+      ),
+      device = device_type
     )
   }
 
@@ -365,7 +366,8 @@ for (ks in seq_along(models)) {
       ftag = paste0(
         "FutureDiffEnvRelationships_transformed_",
         msdata[[ks]][["tag_subset"]]
-      )
+      ),
+      device = device_type
     )
   }
 
@@ -392,7 +394,8 @@ for (ks in seq_along(models)) {
       ftag = paste0(
         "FutureDiffEnvRelationships_merged-ensemble_",
         msdata[[ks]][["tag_subset"]]
-      )
+      ),
+      device = device_type
     )
 
 
@@ -458,7 +461,8 @@ for (ks in seq_along(models)) {
       ftag = paste0(
         "FutureDiffEnvRelationships_selected_merged-ensemble_",
         msdata[[ks]][["tag_subset"]]
-      )
+      ),
+      device = device_type
     )
 
   } else {
@@ -728,7 +732,8 @@ if (do_fit_relationships) {
         data_ID = list(msdata[[1]][["data_ID"]], msdata[[2]][["data_ID"]]),
         subsets = list(msdata[[1]][["ids_data2"]], msdata[[2]][["ids_data2"]]),
         path = dir_res2_q3d,
-        ftag = paste0("FutureDiffEnvRelationships_", id_eus)
+        ftag = paste0("FutureDiffEnvRelationships_", id_eus),
+        device = device_type
       )
     }
   }
@@ -772,7 +777,8 @@ if (do_plot_relationships) {
         "FutureDiffEnvRelationships_merged-ensemble_",
         id_eus, "_",
         vtag
-      )
+      ),
+      device = device_type
     )
   }
 }

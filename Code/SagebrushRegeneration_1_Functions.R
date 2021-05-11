@@ -321,7 +321,9 @@ get_DHARMA <- function(x, data_sp = NULL, data_ID = NULL) {
 
 #' Residual plots comparing two models
 get_resid_plots <- function(m1, m2, m_names, data_sp = NULL, subsets = NULL,
-  data_ID = NULL, path = ".", ftag = "") {
+  data_ID = NULL, path = ".", ftag = "", device = c("png", "pdf")) {
+
+  device <- match.arg(device)
 
   if (is.null(subsets)) {
     if (is.null(data_sp)) {
@@ -360,16 +362,29 @@ get_resid_plots <- function(m1, m2, m_names, data_sp = NULL, subsets = NULL,
     # QQ-plot and residuals versus predicted
     n_panels <- c(length(xdh), 2 + as.integer(!is.null(data_sp)))
 
-    grDevices::png(
-      filename = file.path(
-        path,
-        paste0("Fig_ScaledResidualPlots", ftag, ".png")
-      ),
-      units = "in",
-      res = 300,
-      height = n_panels[1] * 3.5,
-      width = n_panels[2] * 3.5
+    fname <- file.path(
+      path,
+      paste0("Fig_ScaledResidualPlots", ftag, ".", device)
     )
+
+    if (device == "png") {
+      grDevices::png(
+        filename = fname,
+        units = "in",
+        res = 300,
+        height = n_panels[1] * 3.5,
+        width = n_panels[2] * 3.5
+      )
+
+    } else if (device == "pdf") {
+      grDevices::pdf(
+        file = fname,
+        height = n_panels[1] * 3.5,
+        width = n_panels[2] * 3.5
+      )
+    }
+
+
     par_prev <- graphics::par(
       mfrow = n_panels,
       mar = c(2.5, 2.5, 1.5, 0.5),
@@ -755,9 +770,11 @@ plot_model_relationships <- function(
   panels_by_row = TRUE,
   last_plot = NULL,
   path = ".",
-  ftag = ""
+  ftag = "",
+  device = c("png", "pdf")
 ) {
 
+  device <- match.arg(device)
   n_models <- length(responses)
 
   if (inherits(predictors, "list")) {
@@ -827,13 +844,23 @@ plot_model_relationships <- function(
   layout_widths <- c(w.edgeL, temp[-length(temp)], w.edgeR)
 
   # Figure device
-  png(
-    units = "in",
-    res = 150,
-    height = fexp * sum(layout_heights),
-    width = fexp * sum(layout_widths),
-    file = file.path(path, paste0("Fig_VisReg_", ftag, ".png"))
-  )
+  fname <- file.path(path, paste0("Fig_VisReg_", ftag, ".", device))
+  if (device == "png") {
+    grDevices::png(
+      filename = fname,
+      units = "in",
+      res = 150,
+      height = fexp * sum(layout_heights),
+      width = fexp * sum(layout_widths)
+    )
+
+  } else if (device == "pdf") {
+    grDevices::pdf(
+      file = fname,
+      height = fexp * sum(layout_heights),
+      width = fexp * sum(layout_widths)
+    )
+  }
 
   layout(lmat, heights = layout_heights, widths = layout_widths)
 
@@ -1017,14 +1044,39 @@ calc_model_dcor2d <- function(data, predictors, responses) {
 }
 
 #' Ascendant hierarchical clustering of variables
-calc_asc_hierarch_clust <- function(data, predictors, do_stability = FALSE,
-  path = ".", ftag = "") {
+calc_asc_hierarch_clust <- function(
+  data, predictors,
+  do_stability = FALSE,
+  path = ".", ftag = "", device = c("png", "pdf")
+) {
+
+  device <- match.arg(device)
+
   #--- Ascendant hierarchical clustering of variables
   dats_preds_hclusts <- ClustOfVar::hclustvar(X.quanti = data[, predictors])
 
-  png(height = 14, width = 14, units = "in", res = 600,
-    file = file.path(path,
-      paste0("Fig_PredictorSelection_TreeDiagram__hclust_", ftag, ".png")))
+  fname <- file.path(
+    path,
+    paste0("Fig_PredictorSelection_TreeDiagram__hclust_", ftag, ".", device)
+  )
+
+  if (device == "png") {
+    grDevices::png(
+      filename = fname,
+      units = "in",
+      res = 600,
+      height = 14,
+      width = 14
+    )
+
+  } else if (device == "pdf") {
+    grDevices::pdf(
+      file = fname,
+      height = 14,
+      width = 14
+    )
+  }
+
   plot(dats_preds_hclusts)
   dev.off()
 
@@ -1033,14 +1085,33 @@ calc_asc_hierarch_clust <- function(data, predictors, do_stability = FALSE,
     dats_stability_hclusts <- ClustOfVar::stability(dats_preds_hclusts)
     nclusters <- as.integer(1 + which.max(dats_stability_hclusts[["meanCR"]]))
 
-    png(height = 10, width = 5, units = "in", res = 600,
-      file = file.path(path,
-        paste0("Fig_PredictorSelection_TreeStability__hclust_", ftag, ".png")))
+    fname <- file.path(
+      path,
+      paste0("Fig_PredictorSelection_TreeStability__hclust_", ftag, ".", device)
+    )
+    if (device == "png") {
+      grDevices::png(
+        filename = fname,
+        units = "in",
+        res = 600,
+        height = 10,
+        width = 5
+      )
+
+    } else if (device == "pdf") {
+      grDevices::pdf(
+        file = fname,
+        height = 10,
+        width = 5
+      )
+    }
+
     par_prev <- par(mfrow = c(2, 1))
     plot(dats_stability_hclusts)
     boxplot(dats_stability_hclusts[["matCR"]])
     par(par_prev)
     dev.off()
+
   } else {
     nclusters <- NA
   }
@@ -1219,7 +1290,9 @@ consensus_best_preds <- function(predictor_info, data, nclusters,
 
 
 plot_correlation_checks <- function(data, predictors, responses,
-  path = ".", ftag = "") {
+  path = ".", ftag = "", device = c("png", "pdf")) {
+
+  device <- match.arg(device)
 
   dats_cor <- cor(data[, predictors], use = "pairwise.complete.obs")
 
@@ -1234,14 +1307,36 @@ plot_correlation_checks <- function(data, predictors, responses,
   }
 
   ns <- length(predictors)
-  png(height = max(7, ns), width = max(7, ns), units = "in", res = 600,
-    file = file.path(path,
-      paste0("Fig_PairwiseCorrelations_", ftag, ".png"))
+
+  fname <- file.path(
+    path,
+    paste0("Fig_PairwiseCorrelations_", ftag, ".", device)
   )
-  tmp <- corrplot::corrplot(cor_tmp,
+
+  if (device == "png") {
+    grDevices::png(
+      height = max(7, ns),
+      width = max(7, ns),
+      units = "in",
+      res = 600,
+      filename = fname
+    )
+
+  } else if (device == "pdf") {
+    grDevices::pdf(
+      height = max(7, ns),
+      width = max(7, ns),
+      file = fname
+    )
+  }
+
+  tmp <- corrplot::corrplot(
+  cor_tmp,
     addCoef.col = "black", number.cex = 0.5,
     order = "hclust", hclust.method = "ward.D2", addrect = 2,
-    tl.cex = 0.5)
+    tl.cex = 0.5
+  )
+
   dev.off()
 
 
@@ -1265,10 +1360,27 @@ plot_correlation_checks <- function(data, predictors, responses,
   }
 
   ns <- length(predictors) + length(responses)
-  png(height = 1.5 * ns, width = 1.5 * ns, units = "in", res = 600,
-    file = file.path(path,
-      paste0("Fig_PairwiseRelationships_", ftag, ".png"))
+  fname <- file.path(
+    path,
+    paste0("Fig_PairwiseRelationships_", ftag, ".", device)
   )
+
+  if (device == "png") {
+    grDevices::png(
+      height = 1.5 * ns,
+      width = 1.5 * ns,
+      units = "in",
+      res = 600,
+      filename = fname
+    )
+
+  } else if (device == "pdf") {
+    grDevices::pdf(
+      height = 1.5 * ns,
+      width = 1.5 * ns,
+      file = fname
+    )
+  }
 
   pairs(data[, c(responses, predictors)],
     lower.panel = panel.cor,

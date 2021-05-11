@@ -194,6 +194,7 @@ if (do_map_agreement) {
     addfun_matrix = addfun_mtx,
     addenv_matrix = addenv_mtx,
     path = dir_res2_q2a,
+    device = device_type,
     ftag = paste(
       "Agreement_GISSM_vs_Shriver2018",
       default_subprj, cfun,
@@ -283,6 +284,7 @@ if (do_map_agreement_small) {
         addfun_matrix = addfun_mtx,
         addenv_matrix = addenv_mtx,
         path = dir_res2_q2a,
+        device = device_type,
         ftag = paste(
           "Agreement_GISSM_vs_Shriver2018",
           default_subprj, cfun, id_eus,

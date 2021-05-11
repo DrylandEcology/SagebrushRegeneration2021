@@ -83,8 +83,10 @@ if (FALSE) {
   dir_temp <- file.path(dir_res2, "Output2_ModelComparison")
   dir.create(dir_temp, recursive = TRUE, showWarnings = FALSE)
 
-  png(height = 5, width = 10, units = "in", res = 150,
-    file = file.path(dir_temp, "CheckUse_Shriver2018.png"))
+  grDevices::png(
+    height = 5, width = 10, units = "in", res = 150,
+    file = file.path(dir_temp, "CheckUse_Shriver2018.png")
+  )
 
   par_prev <- par(mfrow = c(1, 2), mar = c(2, 3, 1, 3), mgp = c(1, 0, 0),
     tcl = 0.3, cex = 1)
@@ -274,6 +276,7 @@ if (do_plot_comparison) {
     map_extent = extent_subsets[[min(used_subsets)]],
     fexp_axis = 1,
     path = file.path(dir_res2_q1a),
+    device = device_type,
     ftag = paste0(
       "Maps_GISSM_vs_Shriver2018_",
       sc_hist, "-", default_subprj, "_", vtag
@@ -473,6 +476,7 @@ if (
     map_extent = extent_subsets[["BigSage"]],
     fexp_axis = 1,
     path = dirname(fname_map_ceciii),
+    device = device_type,
     ftag = basename(fname_map_ceciii),
     pborders = pborders
   )

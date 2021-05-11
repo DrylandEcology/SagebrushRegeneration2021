@@ -311,6 +311,7 @@ if (do_map_extrapolation) {
       map_extent = extent_subsets[[min(used_subsets)]],
       addfun_matrix = addfun_mtx,
       path = dir_res2_q2d,
+      device = device_type,
       ftag = paste(
         "Extrapolation",
         default_subprj,
@@ -378,6 +379,7 @@ if (do_map_extrapolation) {
       map_extent = extent_subsets[[min(used_subsets)]],
       addfun_matrix = addfun_mtx,
       path = dir_res2_q2d,
+      device = device_type,
       ftag = paste(
         "Extrapolation",
         default_subprj,
