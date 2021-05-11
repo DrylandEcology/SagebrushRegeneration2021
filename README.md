@@ -98,17 +98,21 @@ The code assumes the following organization of directories and files:
 
   * Objective 1: Geographic patterns of big sagebrush regeneration
     - `SagebrushRegeneration_3_Part1a_HistoricalPatterns.R`
-      for Figure 1, Table 1, Appendix S1 Table S3, Appendix S2 Figure S1
+      for Figure 1 "4_Analysis_Results/Output1_GeographicPatterns/HistoricalPatterns/Fig_Maps_GISSM_vs_Shriver2018_Current-SoilSiteSpecific_v4.pdf",
+      Table 1, Appendix S1 Table S3, Appendix S2 Figure S1
 
     - `SagebrushRegeneration_3_Part1b_FuturePatterns.R`
-      for Figure 3, Table 1, Appendix S1 Table S3, Appendix S2 Figure S2
+      for Figure 3 "4_Analysis_Results/Output1_GeographicPatterns/FuturePatterns/Fig_Maps_GISSM_vs_Shriver2018_SoilSiteSpecific_median_hybrid-delta-3mod.d90yrs.RCP85_v4.pdf",
+      Table 1, Appendix S1 Table S3, Appendix S2 Figure S2
 
   * Objective 2: Robustness of projections
     - `SagebrushRegeneration_3_Part2a_Uncertainty-Agreement.R`
-      for Figure 4, Table 1, Appendix S2 Figure S3
+      for Figure 4 "4_Analysis_Results/Output2_Uncertainty/Fig_Agreement_GISSM_vs_Shriver2018_SoilSiteSpecific_median_hybrid-delta-3mod.d90yrs.RCP85_90perc-agreement_v4.pdf",
+      Table 1, Appendix S2 Figure S3
 
     - `SagebrushRegeneration_3_Part2b_Uncertainty-Sensitivity.R`
-      for Figure 5, Appendix S1 Table S4, Appendix S2 Figure S4
+      for Figure 5 "4_Analysis_Results/Output2_Uncertainty/Fig_Sensitivity_ExperimentalFactors_resps_v4.pdf",
+      Appendix S1 Table S4, Appendix S2 Figure S4
 
     - `SagebrushRegeneration_3_Part2d_Uncertainty-Extrapolations.R`
       for Appendix S1 Table S5, Appendix S2 Figure S5-S8,
@@ -118,13 +122,15 @@ The code assumes the following organization of directories and files:
       for Appendix S2 Figure S9
 
     - `SagebrushRegeneration_3_Part3b_GeneralEnvRelationships.R`
-      for Figure 6, Table 2, Appendix S1 Table S2, Appendix S1 Table S6
+      for Figure 6 "4_Analysis_Results/Output3_EnvRelationships/Current_GeneralEnvRelationships/Fig_VisReg_GeneralEnvRelationships_Current_nclusters2.pdf",
+      Table 2, Appendix S1 Table S2, Appendix S1 Table S6
 
     - `SagebrushRegeneration_3_Part3c_SoilDifferenceRelationships.R`
       for Table 2, Appendix S2 Figure S10
 
     - `SagebrushRegeneration_3_Part3d_GeneralFutureDiffEnvRelationships.R`
-      for Figure 7, Table 2, Appendix S1 Table S7, Appendix S2 Figure S11-S13
+      for Figure 7 "4_Analysis_Results/Output3_EnvRelationships/FutureDelta_GeneralEnvRelationships/Fig_VisReg_FutureDiffEnvRelationships_merged-ensemble_hybrid-delta-3mod.d90yrs.RCP85_v4.pdf",
+      Table 2, Appendix S1 Table S7, Appendix S2 Figure S11-S13
 
 
 
