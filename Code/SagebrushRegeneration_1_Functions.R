@@ -734,16 +734,29 @@ plot_panels_2way_predictors <- function(
 
     # Add legend
     if (add_legend) {
+
       loc_legend <- rSW2analysis::legend_location(
-        add_points,
+        cbind(
+          obj_visreg$fit[, obj_visreg$meta$x],
+          obj_visreg$fit$visregFit
+        ),
         xlim = xlimt,
         ylim = ylim
+      )
+
+      tmp <- funtrans(iv2)(vbreaks)
+      tmp_legend_labels <- sapply(
+        tmp,
+        function(x) {
+          tmpd <- if (abs(x) < 10) 2 else 0
+          formatC(round(x, digits = tmpd), digits = tmpd, format = "f")
+        }
       )
 
       legend(
         x = loc_legend,
         bty = "n",
-        legend = round(funtrans(iv2)(vbreaks), 2),
+        legend = tmp_legend_labels,
         title = sub(" (", "\n(", xlabs[iv2], fixed = TRUE),
         fill = visreg:::pal(n = length(vbreaks)),
         cex = cex_legend,
@@ -819,7 +832,7 @@ plot_model_relationships <- function(
   N_prj <- prod(n_panels)
 
   w.panel <- 3
-  w.edgeL <- 0.35; w.edgeI <- if (panels_by_row) 0.05 else 0.2; w.edgeR <- 0.01 # Width of panel and left/interior/right edge
+  w.edgeL <- 0.35; w.edgeI <- if (panels_by_row) 0.05 else 0.25; w.edgeR <- 0.1 # Width of panel and left/interior/right edge
   h.panel <- 2.5
   h.edgeL <- 0.35; h.edgeI <- if (panels_by_row && models_have_same_preds) 0.15 else 0.25; h.edgeU <- 0.15 # Heigth of panel and lower/interior/upper edge
 
